@@ -10,6 +10,7 @@ Frontend:
 - Socket.IO Client
 - CSS / Tailwind
 - Axios
+  
 Backend:
 - Node.js
 - Express.js
