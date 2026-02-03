@@ -55,7 +55,7 @@ export const AuthProvider = ({children}) => {
         setOnlineUsers([]);
         axios.defaults.headers.common["token"] = null;
         toast.success("Logged out successfully");
-        socket.disconnect();
+        socket?.disconnect();
     }
 
     //Update profile function to handle user profile updates
