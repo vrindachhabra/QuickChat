@@ -33,14 +33,14 @@ try {
 export const getMessages = async(req, res) => {
     try {
         const {id : selectedUserId} = req.params;
-        const myid = req.user._id;
+        const myId = req.user._id;
         const messages = await Message.find({
             $or: [
-                {senderId: myid, receiverId: selectedUserId},
+                {senderId: myId, receiverId: selectedUserId},
                 {senderId: selectedUserId, receiverId: myId}
             ]
-        })
-        await Message.updateMany({senderId: selectedUserId, receiverId: myId}, {seen: true});
+        }).sort({createdAt: 1}) //sort messages by time in ascending order
+        await Message.updateMany({senderId: selectedUserId, receiverId: myId, seen: false}, {seen: true});
 
         res.json({success:true, messages})
     } catch (error) {

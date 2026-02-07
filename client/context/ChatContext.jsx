@@ -28,6 +28,8 @@ export const ChatProvider = ({children}) => {
     const getMessages = async(userId) => {
         try {
             const {data} = await axios.get(`/api/messages/${userId}`)
+            console.log("Fetched messages:", data);
+            
             if(data.success){
                 setMessages(data.messages)
             }
@@ -55,7 +57,7 @@ export const ChatProvider = ({children}) => {
     const subscribeToMessages = async() => {
         if(!socket) return;
         socket.on("newMessage", (newMessage) => {
-            if(selectedUser && newMessage.sender === selectedUser._id){
+            if(selectedUser && newMessage.senderId === selectedUser._id){
                 newMessage.seen = true;
                 setMessages((prevMessages) => [...prevMessages, newMessage])
                 axios.put(`/api/messages/mark/${newMessage._id}`)
@@ -80,14 +82,14 @@ export const ChatProvider = ({children}) => {
         
 
     const value = {
-        messages,
+        messages, 
         users,
         selectedUser,
         setSelectedUser,
         unseenMessages,
         getUsers,
         getMessages,
-        setMessages, 
+        setMessages,
         sendMessage,
         setUnseenMessages
     }
