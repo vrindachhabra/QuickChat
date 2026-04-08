@@ -17,3 +17,6 @@ Backend:
 - Socket.IO
 Database:
 - MongoDB
+
+Here's the link to my deployed project-
+https://quick-chat-phi-one.vercel.app/
