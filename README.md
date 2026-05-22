@@ -18,5 +18,5 @@ Backend:
 Database:
 - MongoDB
 
-Here's the link to my deployed project-
+Live Demo-
 https://quick-chat-phi-one.vercel.app/
